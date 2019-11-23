@@ -7,6 +7,7 @@
 #include <sys/ioctl.h> /* ioctl() */
 #include <sys/time.h>  /* timeval */
 #include <unistd.h>    /* close() */
+#include <dirent.h>    /* dirent */
 
 #define EV_BUF_SIZE 16
 
@@ -51,15 +52,3 @@ void obtainInfo(int fd) {
     );
 }
 
-int main(int argc, char *argv[]) {
-    int fd;
-    if ((fd = open(argv[1], O_RDONLY)) < 0) {
-        fprintf(stderr,
-                "ERR %d:\n"
-                "Unable to open `%s'\n"
-                "%s\n",
-                errno, argv[1], strerror(errno));
-    }
-
-    obtainInfo(fd);
-}
